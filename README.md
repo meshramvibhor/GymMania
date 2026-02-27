@@ -1,97 +1,117 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# GymMania 💪
 
-# Getting Started
+A personal gym companion app built with **React Native** for tracking workouts and staying consistent.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Workout Plan** — Set up your weekly workout schedule (Mon–Sun), add exercises per day with target sets, reps, and weight
+- **Exercise Logging** — Tap any exercise to log your sets with weight and reps. Each set is added one by one
+- **Session History** — View your previous logged sessions per exercise with best weight, volume, and individual sets
+- **Performance Comparison** — Compare your current session against your last session (volume, reps, avg weight) with delta indicators
+- **Home Dashboard** — See today's workout summary, calorie overview, weekly strip at a glance
+- **Diet & Progress** — Coming soon
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
+## Tech Stack
+
+| | |
+|---|---|
+| Framework | React Native 0.84 (CLI) |
+| Language | TypeScript |
+| Navigation | React Navigation (Bottom Tabs + Native Stack) |
+| State Management | Zustand |
+| Persistence | AsyncStorage |
+| Platform | Android |
+
+---
+
+## Screens
+
+```
+Home          — Daily snapshot (workout done, calories, week overview)
+Workout Plan  — Weekly day tiles with exercise count
+Workout Day   — Exercise list for a specific day (add / edit / remove)
+Exercise Log  — Log sets for a single exercise + history
+Exercise Picker — Browse and add exercises to a day or log
+Diet          — Coming soon
+Progress      — Coming soon
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Android Studio + Android SDK
+- JDK 17
+- React Native CLI
+
+### Install & Run
+
+```bash
+# Install dependencies
+npm install
+
+# Start Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
+# Run on Android (in a separate terminal)
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### iOS
+> Make sure an Android emulator is running or a physical device is connected via USB with Developer Mode enabled.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+---
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+## Project Structure
 
-```sh
-bundle install
+```
+src/
+├── navigation/
+│   ├── AppNavigator.tsx          # Root stack navigator
+│   ├── BottomTabNavigator.tsx    # Bottom tab bar
+│   └── WorkoutStackNavigator.tsx # Workout nested stack
+├── screens/
+│   ├── HomeScreen.tsx
+│   ├── WorkoutPlanScreen.tsx
+│   ├── WorkoutDayScreen.tsx
+│   ├── ExerciseLogScreen.tsx
+│   └── ExercisePickerScreen.tsx
+├── store/
+│   ├── workoutStore.ts           # Zustand — workout plan state
+│   ├── logStore.ts               # Zustand — daily logs state
+│   └── dietStore.ts              # Zustand — diet plan state
+├── theme/
+│   └── colors.ts                 # Dark theme color palette
+├── types/
+│   └── index.ts                  # TypeScript interfaces
+└── data/
+    ├── exercises.ts              # Exercise library seed data
+    └── foods.ts                  # Food items seed data
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
-```
+## Color Palette
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+The app uses a refined dark theme with indigo as the primary accent:
 
-```sh
-# Using npm
-npm run ios
+| Token | Value | Usage |
+|---|---|---|
+| `background` | `#09090C` | Screen backgrounds |
+| `card` | `#16161D` | Card surfaces |
+| `primary` | `#6366F1` | Buttons, active states, highlights |
+| `accent` | `#EC4899` | Contrast highlights |
+| `success` | `#22C55E` | Positive deltas |
+| `error` | `#EF4444` | Negative deltas, remove actions |
 
-# OR using Yarn
-yarn ios
-```
+---
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## License
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT
